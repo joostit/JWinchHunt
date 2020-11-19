@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Winch Hunt Web</title>
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+        <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 
 <style>
 
-    section {
+    article {
         float: left;
         padding: 20px;
         min-height: 170px;
@@ -22,6 +22,7 @@
         clear: both;
         visibility: hidden;
     }
+
     footer {
         text-align: center;
         padding: 5px;
@@ -32,14 +33,15 @@
 <div class="container">
     <header>
         <nav>
-            <!--/*/ <th:block th:include="fragments/topnav :: topnav"></th:block> /*/-->
+            <th:block th:include="fragments/topnav :: topnav"></th:block>
         </nav>
     </header>
     <div class="wrapper clearfix">
-        <section>
-            <h2>Welcome to our site</h2>
-            <p>Here you will learn how to create websites...</p>
-        </section>
+        <article>
+            <!--/*@thymesVar id="viewTargetPath" type="String"*/-->
+            <!--/*@thymesVar id="viewTargetName" type="String"*/-->
+            <th:block th:include="${viewTargetPath} :: ${viewTargetName}"></th:block>
+        </article>
     </div>
     <footer>
         <p>copyright &copy; 2020: JoostIT</p>

@@ -5,11 +5,7 @@ import net.joostit.winchhunt.repositories.SiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/")
@@ -31,12 +27,25 @@ public class MainController {
         return "Saved";
     }
 
-    @GetMapping("/")
-    public String index(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        System.out.println(name);
+    @GetMapping("/{link}")
+    public String index(@PathVariable String link, Model model) {
+
+        if(link == null){
+            link = "home";
+        }
+
+        model.addAttribute("viewTargetPath", "articles/" + link + "view");
+        model.addAttribute("viewTargetName", link + "view");
+
+        System.out.println(link);
         return "layout";
     }
+
+    @GetMapping("/")
+    public String index(Model model) {
+        return index(null, model);
+    }
+
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Site> getAllUsers() {

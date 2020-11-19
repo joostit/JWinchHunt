@@ -22,15 +22,16 @@
 
     <body>
 
-        <div class="topnav" id="myTopnav">
-            <a class="active" href="#home">Home</a>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
+        <nav class="topnav" id="myTopnav">
+            <!--/*@thymesVar id="viewTargetName" type="String"*/-->
+            <a th:classappend="${viewTargetName eq 'homeview' ? 'active' : ''}" href="home">Home</a>
+            <a th:classappend="${viewTargetName eq 'mapview' ? 'active' : ''}" href="map">Map</a>
+            <a th:classappend="${viewTargetName eq 'adminview' ? 'active' : ''}" href="admin">Admin</a>
+            <a th:classappend="${viewTargetName eq 'aboutview' ? 'active' : ''}" href="about">About</a>
             <a class="icon" href="javascript:void(0);" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
             </a>
-        </div>
+        </nav>
 
     </body>
 </html>
