@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WinchhuntApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(WinchhuntApplication.class, args);
     }
 
