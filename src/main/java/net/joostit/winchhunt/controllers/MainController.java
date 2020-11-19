@@ -37,7 +37,6 @@ public class MainController {
         model.addAttribute("viewTargetPath", "articles/" + link + "view");
         model.addAttribute("viewTargetName", link + "view");
 
-        System.out.println(link);
         return "layout";
     }
 
