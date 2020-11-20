@@ -13,7 +13,7 @@
             /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
             function myFunction() {
                 var x = document.getElementById("myTopnav");
-                if (x.className === "topnav") {
+                if (x.classList.contains("topnav")) {
                     x.className += " responsive";
                 } else {
                     x.className = "topnav";
@@ -30,17 +30,18 @@
             <a th:classappend="${viewTargetName eq 'mapview' ? 'active' : ''}" href="map">Map</a>
             <a th:classappend="${viewTargetName eq 'adminview' ? 'active' : ''}" href="admin">Admin</a>
             <a th:classappend="${viewTargetName eq 'aboutview' ? 'active' : ''}" href="about">About</a>
-            <a class="icon" href="javascript:void(0);" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
 
-            <div class="topnav-right topnav">
 
-                <th:text th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</th:text>
+            <div>
+                <th:text class="userlabel" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</th:text>
                 <form th:action="@{/logout}" method="post">
                     <input type="submit" value="Sign Out"/>
                 </form>
             </div>
+
+            <a class="icon" href="javascript:void(0);" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
         </nav>
 
     </body>
