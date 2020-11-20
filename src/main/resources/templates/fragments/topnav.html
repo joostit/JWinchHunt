@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="topnav">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      th:fragment="topnav">
 
 <head lang="en" >
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -31,6 +33,14 @@
             <a class="icon" href="javascript:void(0);" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
             </a>
+
+            <div class="topnav-right topnav">
+
+                <th:text th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</th:text>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"/>
+                </form>
+            </div>
         </nav>
 
     </body>
