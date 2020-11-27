@@ -1,6 +1,5 @@
 package net.joostit.winchhunt.services;
 
-import net.joostit.winchhunt.entities.User;
 import net.joostit.winchhunt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,17 +8,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class SystemUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository UserRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return new DefaultUserPrincipal(user);
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return UserRepository.findByUsername(s).orElseThrow(
+                () -> new UsernameNotFoundException("User " + s + " was not found")
+        );
     }
 }
